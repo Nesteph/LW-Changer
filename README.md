@@ -12,3 +12,6 @@ Basic Usage:
 2) At machine start up and once every 5 minutes it will check
    against the URL to see if a newer version is available, and
    if so, download it.
+
+Download is avaliable here:
+https://github.com/Nesteph/LW-Changer/blob/master/build/LWChanger.dmg
