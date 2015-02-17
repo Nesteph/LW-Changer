@@ -1,17 +1,10 @@
 # LW-Changer
 
-Basic version for now.
+Checks for an image at a specified URL and sets it as the Login wallpaper in Yosemite.
 
-Checks for a newer image at a specified location and downloads it into Yosemite's login screen image location.
+#####Basic Usage:
+- To set the image location to check against, `defaults write /Library/Preferences/LWChanger.plist imageURL <url>` to point at the image url you want to compare against.
+- To set how many backups you want to keep, `defaults write /Library/Preferences/LWChanger.plist NumToBackup <number>`
+- Currently, at machine start up and once every 5 minutes it will check against the URL to see if a newer version is available, and if so, download it.
 
-Basic Usage:
-1) To set the image location to check against, modify the script
-  in /Library/LWChanger/LoginWindowDownload.sh to point at the
-  image url you want to compare against.
-
-2) At machine start up and once every 5 minutes it will check
-   against the URL to see if a newer version is available, and
-   if so, download it.
-
-Download is avaliable here:
-https://github.com/Nesteph/LW-Changer/blob/master/build/LWChanger.dmg
+Download is avaliable **[here](https://github.com/Nesteph/LW-Changer/releases)**.
