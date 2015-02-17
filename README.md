@@ -13,3 +13,4 @@ Download is avaliable **[here](https://github.com/Nesteph/LW-Changer/releases)**
 #####Planned features:
 - Allowing the user to set the checking frequency
 - Adding a forced download option
+- Changing the wallpaper if it has changed while the machine is idle at the login screen. This may already work.
