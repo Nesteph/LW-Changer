@@ -10,7 +10,7 @@ FrequencyCheck=`defaults read /Library/Preferences/LWChanger.plist FrequencyChec
 # launchd modification here
 
 # Download the latest image if the Modify date is newer than our current login window background.
-curl -z /Library/Caches/com.apple.desktop.admin.png $imageURL > /Library/LWChanger/com.apple.desktop.admin.png
+curl $imageURL -z /Library/Caches/com.apple.desktop.admin.png -o /Library/LWChanger/com.apple.desktop.admin.png
 
 # Check to see if the updated image has been downloaded, if so, move it to 
 if [ -e "/Library/LWChanger/com.apple.desktop.admin.png" ]; then
