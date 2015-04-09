@@ -6,11 +6,16 @@ NumToBackup=`defaults read /Library/Preferences/LWChanger.plist NumToBackup`
 BackupLocation=`defaults read /Library/Preferences/LWChanger.plist BackupLocation`
 FrequencyCheck=`defaults read /Library/Preferences/LWChanger.plist FrequencyCheck`
 
+# Make Backup Folder if it doesn't exist
+if [ ! -d $BackupLocation ]; then
+  mkdir -p $BackupLocation
+fi
+
 # Update LaunchDaemon to match config settings
 # launchd modification here
 
 # Download the latest image if the Modify date is newer than our current login window background.
-curl -z /Library/Caches/com.apple.desktop.admin.png $imageURL > /Library/LWChanger/com.apple.desktop.admin.png
+curl $imageURL -z /Library/Caches/com.apple.desktop.admin.png -o /Library/LWChanger/com.apple.desktop.admin.png
 
 # Check to see if the updated image has been downloaded, if so, move it to 
 if [ -e "/Library/LWChanger/com.apple.desktop.admin.png" ]; then
