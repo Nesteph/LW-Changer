@@ -6,6 +6,11 @@ NumToBackup=`defaults read /Library/Preferences/LWChanger.plist NumToBackup`
 BackupLocation=`defaults read /Library/Preferences/LWChanger.plist BackupLocation`
 FrequencyCheck=`defaults read /Library/Preferences/LWChanger.plist FrequencyCheck`
 
+# Make Backup Folder if it doesn't exist
+if [ ! -d $BackupLocation ]; then
+  mkdir -p $BackupLocation
+fi
+
 # Update LaunchDaemon to match config settings
 # launchd modification here
 
