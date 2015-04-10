@@ -8,7 +8,9 @@ pathToPackage=$1
 targetLocation=$2
 targetVolume=$3
 
+touch -t 199901010101 /Library/LWChanger/com.apple.desktop.admin.png
 cp /Library/Caches/com.apple.desktop.admin.png /Library/Caches/com.apple.desktop.admin.png.bak
+launchctl load /Library/LaunchDaemons/LWChanger.plist
 
 
 exit 0		## Success

@@ -15,30 +15,38 @@ fi
 # launchd modification here
 
 # Download the latest image if the Modify date is newer than our current login window background.
-curl $imageURL -z /Library/Caches/com.apple.desktop.admin.png -o /Library/LWChanger/com.apple.desktop.admin.png
+if [[ "$(curl $imageURL -z /Library/LWChanger/com.apple.desktop.admin.png -o /Library/LWChanger/com.apple.desktop.admin.png -s -L -w %{http_code})" == "200" ]]; then
 
-# Check to see if the updated image has been downloaded, if so, move it to 
-if [ -e "/Library/LWChanger/com.apple.desktop.admin.png" ]; then
-  
   # Check to see if any backups need to be kept
   if [ $NumToBackup != 0 ]; then
-    
+
     # Make loop counter for number of backup images to keep
-    Num=echo "$((NumToBackup-1))"
+    Num=`echo "$(($NumToBackup-1))"`
 
     # Loop through existing backups and move them for newer incoming image
     for (($Num; $Num>0; Num--)); do
-
+      
       # Checks to see if a backup already exists, and if it does, moves it for the new one
-      if [ -e "$BackupLocation/com.apple.desktop.admin.png.$Num"]; then
-        next=$BackupLocation/com.apple.desktop.admin.png.`echo "$(($Num+1))"`
-        mv "$BackupLocation/com.apple.desktop.admin.png.$Num" $next
+      if [ -e "$BackupLocation/$Num.com.apple.desktop.admin.png" ]; then
+        next=$BackupLocation/`echo "$(($Num+1))"`.com.apple.desktop.admin.png
+        mv "$BackupLocation/$Num.com.apple.desktop.admin.png" $next
       fi
+      
     done
+    
     # Backup the current image to the backup location
-    mv /Library/Caches/com.apple.desktop.admin.png "$BackupLocation/com.apple.desktop.admin.png.1"
+    cp /Library/Caches/com.apple.desktop.admin.png "$BackupLocation/1.com.apple.desktop.admin.png"
+    
   fi
   
-  # Move the image downloaded earlier to be used for the login window background
-  mv /Library/LWChanger/com.apple.desktop.admin.png /Library/Caches/com.apple.desktop.admin.png
+  # Make the downloaded image the login wallpaper
+  cp /Library/LWChanger/com.apple.desktop.admin.png /Library/Caches/com.apple.desktop.admin.png
+  
+fi
+
+# Move the downloaded image to the current wallpaper there isn't one there already
+if [ ! -e "/Library/Caches/com.apple.desktop.admin.png" ]; then
+  if [ -e "/Library/LWChanger/com.apple.desktop.admin.png" ]; then
+    cp /Library/LWChanger/com.apple.desktop.admin.png /Library/Caches/com.apple.desktop.admin.png
+  fi
 fi
