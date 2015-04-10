@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>imageURL</key>
-  <string>arbitrary_name</string>
+	<string>https://cloud.githubusercontent.com/assets/6115762/7081318/9e733b92-df05-11e4-919b-b4b5ecc28f81.jpg</string>
   <key>NumToBackup</key>
   <integer>5</integer>
   <key>BackupLocation</key>
